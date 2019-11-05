@@ -4,16 +4,19 @@ Deep Belief Network
 
 
 import torch
-import numpy
-import RestrictedBoltzmannMachine.py
+import numpy as np
+import RestrictedBoltzmannMachine
 
 
 class DBN(torch.nn.Module):
-    super(DBN,self).__init__()
-    self.desc = "DBN"
+    
     
     
     def __init__(self, num_hidden_layers, num_visible, num_hidden, num_gibbs_samplings, learning_rate = 1e-3):
+        super(DBN,self).__init__()
+        self.desc = "DBN"
+        
+        
         self.num_hidden_layers = num_hidden_layers
         self.num_visible = num_visible
         self.num_hidden = num_hidden
@@ -24,7 +27,8 @@ class DBN(torch.nn.Module):
         self.RBMS = []
         
         
-        
+    def __desc__(self):
+        return self.desc
         
     
     def train(self, training_set, num_epochs):

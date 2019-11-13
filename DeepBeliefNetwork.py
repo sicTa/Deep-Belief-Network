@@ -12,7 +12,7 @@ class DBN(torch.nn.Module):
     
     
     
-    def __init__(self, num_hidden_layers, num_visible, num_hidden, num_gibbs_samplings, learning_rate = 1e-3):
+    def __init__(self, num_hidden_layers, num_visible, num_hidden, num_output, num_gibbs_samplings, learning_rate = 1e-3):
         super(DBN,self).__init__()
         self.desc = "DBN"
         
@@ -20,6 +20,7 @@ class DBN(torch.nn.Module):
         self.num_hidden_layers = num_hidden_layers
         self.num_visible = num_visible
         self.num_hidden = num_hidden
+        self.num_output = num_output
         self.num_gibbs_samplings = num_gibbs_samplings
         self.learning_rate = learning_rate
         
@@ -75,6 +76,8 @@ class DBN(torch.nn.Module):
                     _, sampled_hidden_vector = curr_rbm.sample_hidden(visible_vector)
                         
                     new_training_set[k] = sampled_hidden_vector
+                    
+    
                 
                 
             

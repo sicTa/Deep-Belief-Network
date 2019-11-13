@@ -77,6 +77,43 @@ class DBN(torch.nn.Module):
                         
                     new_training_set[k] = sampled_hidden_vector
                     
+                    
+            #after training, create new weight matrix representing
+            #the connection between the last RBM and the output layer
+            last_weights = np.random.rand((curr_rbm.num_hidden, self.num_output)) * 0.1
+            self.weights.append(last_weights)
+            
+    def backpropagation(self, training_set, training_labels, num_epochs):
+        '''
+        The training set consists of an array like object of vectors
+        with each vector representing a feature vectors of a phone, word or sentence
+        Each of thoes feature vectors is associated with a training label
+        A training label is an array like object of vectors, with each element
+        being an encopding of a single phone. For example, the phone 'a' is represented as (0, 0, 0, 0, 0, 0)
+        the phone 'b' as (0,0,0,0,0,1) etc. 
+        '''
+        
+        '''
+        We will try with only backpropagating the last layer of the network
+        '''
+        
+        for epoch in range(num_epcohs):
+            for k in range(len(training_set)):
+                curr_elem = training_set[k]
+                curr_label = training_labels[k]
+                curr_label_len = len(training_labels[k])
+                #now, we divide the training_set[k] into curr_label_len parts
+                #and feed each separate part into the network 
+                
+                for i in range(0, curr_label_len):
+                    curr_training_elem = training_set[0:curr_label_len]
+                    
+                    
+                    '''
+                    Bring back the previous code here
+                    '''
+                    
+                    
     
                 
                 
